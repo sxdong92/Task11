@@ -7,7 +7,9 @@ import java.util.Map;
 
 
 public class InfoGain {
-	private List<List<String>> data = new ArrayList<List<String>>(); 
+	/** subset of data affiliated with this node */
+	private List<List<String>> data = new ArrayList<List<String>>();
+	/** rest of attributes set affiliated with this node */
 	private List<String> restAttributesList = new ArrayList<String>(); 
 
 	
@@ -16,7 +18,13 @@ public class InfoGain {
 		this.restAttributesList = attrList;
 	}
 	
-	
+	/**
+	 * Calculate the total entropy of the data set before splitting
+	 * 
+	 * @param labelCounter
+	 * @param size
+	 * @return
+	 */
 	public double calculateTotalEntropy(Map<String, Integer> labelCounter, int size) {
 		double totalEtropy = 0.0;
 		
@@ -28,7 +36,12 @@ public class InfoGain {
 		return totalEtropy;
 	}
 
-	
+	/**
+	 * Find which attribute to use based on the largest information gain
+	 * 
+	 * @param totalEntropy
+	 * @return
+	 */
 	public int choiceOfAttribute(double totalEntropy) {
 		int index = -1;
 		
@@ -47,12 +60,17 @@ public class InfoGain {
 		return index;
 	}
 	
-	
+	/**
+	 * Calculate entropy of each branch
+	 * 
+	 * @param index
+	 * @return
+	 */
 	public double calculateNewEntropy(int index) {
 		double newEntropy = 0.0;
 		
 		List<String> intervals = CounterHelper.getIntervals(data, index);
-		for(int i = 0; i < intervals.size(); i++) {
+		for(int i=0; i<intervals.size(); i++) {
 			List<List<String>> subset = CounterHelper.getSubset(index, intervals.get(i), data);
 			Hashtable<String, Integer> labelCounter = CounterHelper.countElementsInDiffLabel(subset);
 			

@@ -2,13 +2,18 @@ package decisionTree;
 
 import java.util.ArrayList;
 import java.util.Hashtable;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
 
 public class DTAlgorithm {
 	
+	/**
+	 * Recursive function to generate decision tree
+	 * 
+	 * @param data
+	 * @param restAttributesList
+	 * @return
+	 */
 	public TreeNode generateDT(List<List<String>> data, List<String> restAttributesList) {
 		TreeNode root = new TreeNode();
 		root.setData(data);
@@ -35,12 +40,12 @@ public class DTAlgorithm {
 			return root;
 		}
 		
-		List<String> intervals = CounterHelper.getIntervals(data, choice); // 获取最佳侯选属性列上的值域
-		root.setIntervalsList(intervals); // 设置节点的分裂规则
-		root.setParaName(restAttributesList.get(choice)); // 设置最佳分裂属性的名称
+		List<String> intervals = CounterHelper.getIntervals(data, choice); 
+		root.setIntervalsList(intervals); 
+		root.setParaName(restAttributesList.get(choice));
 
 		//recurring to generate tree, depth first
-		for (int i = 0; i < intervals.size(); i++) {
+		for(int i=0; i<intervals.size(); i++) {
 			String interval = intervals.get(i);
 			List<List<String>> subset = CounterHelper.getSubset(choice, interval, data);
 			for (int j = 0; j < subset.size(); j++) {
@@ -50,7 +55,7 @@ public class DTAlgorithm {
 			List<String> newAttributesList = new ArrayList<String>(restAttributesList);
 			newAttributesList.remove(choice);
 			
-			if (subset.size() == 0) {
+			if(subset.size() == 0) {
 				TreeNode leaf = new TreeNode();
 				leaf.setData(subset);
 				leaf.setRestAttributesList(newAttributesList);

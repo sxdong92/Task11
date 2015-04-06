@@ -5,10 +5,19 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-
-
+/**
+ * This is the main entrance of the classifier
+ * 
+ * @version 2.0
+ *
+ */
 public class TestDT {
 	
+	/**
+	 * Entrance - main function
+	 * 
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		TestDT testDT = new TestDT();
 		List<String> restAttributesList = new ArrayList<String>(); 
@@ -73,7 +82,13 @@ public class TestDT {
 		Collections.shuffle(data);
 	}
 	
-	
+	/**
+	 * Cross validation - 10 folds
+	 * 
+	 * @param TrainingData the whole data set with 186 records.
+	 * @param restAttributesList The list of all attributes.
+	 * @return Average accuracy of 10 times test.
+	 */
 	public double crossValidation(List<List<String>> trainingData, List<String> restAttributesList) {
 		//int foldSize = data.size() / 10;
 		double[] accuracy = new double[10];

@@ -6,6 +6,12 @@ import java.util.List;
 
 public class CounterHelper {
 
+	/**
+	 * Get the table of different class label with the number of records within it
+	 * 
+	 * @param data
+	 * @return
+	 */
 	public static Hashtable<String, Integer> countElementsInDiffLabel(List<List<String>> data) {
 		Hashtable<String, Integer> labelCounter = new Hashtable<String, Integer>();
 		
@@ -27,7 +33,12 @@ public class CounterHelper {
 		return labelCounter;
 	}
 	
-	
+	/**
+	 * Find the dominant class with the largest number of records
+	 * 
+	 * @param labelCounter
+	 * @return
+	 */
 	public static String findDominantLabel(Hashtable<String, Integer> labelCounter) {
 		String dominantLabel = "";
 		
@@ -42,14 +53,20 @@ public class CounterHelper {
 		return dominantLabel;
 	}
 	
-	
+	/**
+	 * get all possible branches
+	 * 
+	 * @param datas
+	 * @param index
+	 * @return
+	 */
 	public static List<String> getIntervals(List<List<String>> datas, int index) {
 		List<String> intervals = new ArrayList<String>();
 		
 		String r = "";
-		for (int i = 0; i < datas.size(); i++) {
+		for(int i=0; i<datas.size(); i++) {
 			r = datas.get(i).get(index);
-			if (!intervals.contains(r)) {
+			if(!intervals.contains(r)) {
 				intervals.add(r);
 			}
 		}
@@ -57,7 +74,14 @@ public class CounterHelper {
 		return intervals;
 	}
 	
-	
+	/**
+	 * Return the subset of a certain branch
+	 * 
+	 * @param index
+	 * @param interval
+	 * @param data
+	 * @return
+	 */
 	public static List<List<String>> getSubset(int index, String interval, List<List<String>> data) {
 		List<List<String>> subset = new ArrayList<List<String>>();
 		

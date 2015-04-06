@@ -11,6 +11,15 @@ public class Pruning {
 	private TestDT t;
 	private double originAccu;
 	
+	/**
+	 * Prune the generated tree with REP.
+	 * 
+	 * @param root
+	 * @param restAttributesList
+	 * @param testData
+	 * @param t
+	 * @param originAccu
+	 */
 	public Pruning(TreeNode root, List<String> restAttributesList, List<List<String>> testData, TestDT t, double originAccu) {
 		this.originRoot = root;
 		this.restAttributesList = restAttributesList;
@@ -19,6 +28,11 @@ public class Pruning {
 		this.originAccu = originAccu;
 	}
 	
+	/**
+	 * Recursive function to prune tree
+	 * 
+	 * @param root
+	 */
 	public void pruningWithREP(TreeNode root) {
 		if(root == null) return;
 		if(root.childrenList.size() == 0) return;
