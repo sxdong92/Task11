@@ -68,6 +68,5 @@ public class DTAlgorithm {
 		}
 		return root;
 	}
-	
 }
 
